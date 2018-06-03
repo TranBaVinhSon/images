@@ -8,7 +8,6 @@ const state = {
 
 const getters = {
   isLoggedIn: (state) => {
-    console.log("fuck");
     return !!state.token;
   }
 };
@@ -22,12 +21,12 @@ const actions = {
   finalizeLogin: ({ commit }, hash) => {
     const query = qs.parse(hash.replace("#", ""));
     commit("setToken", query.access_token);
-    window.localStorage.removeItem("imgur_token");
+    window.localStorage.setItem("imgur_token", query.access_token);
     router.push("/");
   },
   logout: ({ commit }) => {
     commit("setToken", null);
-    window.localStorage.setItem("imgur_token", null);
+    window.localStorage.removeItem("imgur_token");
     router.push("/");
   }
 };

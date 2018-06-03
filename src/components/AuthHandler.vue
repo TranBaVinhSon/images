@@ -1,5 +1,5 @@
 <template lang="html">
-  <h1>21312321321</h1>
+  <h1></h1>
 </template>
 
 <script>
