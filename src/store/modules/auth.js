@@ -1,11 +1,14 @@
 import api from "../../api/imgur";
+import qs from "qs";
+import { router } from "../../main";
 
 const state = {
-  token: null
+  token: window.localStorage.getItem('imgur_token')
 };
 
 const getters = {
   isLoggedIn: (state) => {
+    console.log("fuck");
     return !!state.token;
   }
 };
@@ -16,6 +19,14 @@ const actions = {
   },
   logout: ({ commit }) => {
     commit("setToken", null);
+    window.localStorage.setItem("imgur_token", null);
+  },
+  // the function handle logic after login
+  finalizeLogin: ({ commit }, hash) => {
+    const query = qs.parse(hash.replace("#", ""));
+    commit("setToken", query.access_token);
+    window.localStorage.removeItem("imgur_token");
+    router.push("/");
   }
 };
 
