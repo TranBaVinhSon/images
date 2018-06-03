@@ -1,5 +1,5 @@
 <template lang="html">
-  <h1>1221</h1>
+  <h1>21312321321</h1>
 </template>
 
 <script>
@@ -9,7 +9,6 @@ export default {
   name: "AuthHandler",
   methods: mapActions(["finalizeLogin"]),
   created() {
-    console.log("123");
     this.finalizeLogin(window.location.hash);
   }
 }

@@ -3,7 +3,7 @@ import qs from "qs";
 import { router } from "../../main";
 
 const state = {
-  token: window.localStorage.getItem('imgur_token')
+  token: window.localStorage.getItem("imgur_token")
 };
 
 const getters = {
@@ -15,17 +15,19 @@ const getters = {
 
 const actions = {
   login: () => {
+    console.log("login1");
     api.login();
-  },
-  logout: ({ commit }) => {
-    commit("setToken", null);
-    window.localStorage.setItem("imgur_token", null);
   },
   // the function handle logic after login
   finalizeLogin: ({ commit }, hash) => {
     const query = qs.parse(hash.replace("#", ""));
     commit("setToken", query.access_token);
     window.localStorage.removeItem("imgur_token");
+    router.push("/");
+  },
+  logout: ({ commit }) => {
+    commit("setToken", null);
+    window.localStorage.setItem("imgur_token", null);
     router.push("/");
   }
 };

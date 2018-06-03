@@ -7,6 +7,7 @@ import AuthHandler from "./components/AuthHandler";
 import ImageList from "./components/ImageList";
 import UploadForm from "./components/UploadForm";
 
+// for VueRouter
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
@@ -14,10 +15,11 @@ export const router = new VueRouter({
   routes: [
     { path: "", component: ImageList },
     { path: "/upload", component: UploadForm },
-    { path: "/oauth2/callback", component: AuthHandler }
+    { path: "/oauth/2/callback", component: AuthHandler }
   ]
 });
 
+// store for VueX
 new Vue({
   router: router,
   store: store,
